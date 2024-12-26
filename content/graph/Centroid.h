@@ -11,6 +11,7 @@
  */
 #pragma once
 
+vector<vi> decomp;
 vector<vi> adj; vi siz;
 vector<bool> vis;
 void find_size(int v, int p) {
@@ -28,10 +29,11 @@ int centroid(int v, int p, int n) {
 	return v;
 }
 void process(int v) {}
-void solve(int v, int p) {
+int solve(int v, int p) {
 	find_size(v, p);
 	int c = centroid(v, p, siz[v]);
 	process(c);
 	vis[c] = true;
-	for(auto nx : adj[c]) if(!vis[nx]) solve(nx, c);
+	for(auto nx : adj[c]) if(!vis[nx]) decomp[c].push_back(solve(nx, c));
+	return c;
 }
