@@ -23,7 +23,7 @@ template<class T, int SZ> struct LazySeg {
 		lazy[ind] = 0; 
 	} // recalc values for current node
 	void pull(int ind){seg[ind]=cmb(seg[2*ind],seg[2*ind+1]);}
-	void build() { for(inti=SZ-1;i>=1;i--) pull(i); }
+	void build() { for(int i=SZ-1;i>=1;i--) pull(i); }
 	void upd(int lo,int hi,T inc,int ind=1,int L=0, int R=SZ-1) {
 		push(ind,L,R); if (hi < L || R < lo) return;
 		if (lo <= L && R <= hi) { 
