@@ -17,14 +17,15 @@
 
 #include "../data-structures/LazySegmentTree.h"
 
-template <bool VALS_EDGES> struct HLD {
+template <typename T, typename U, bool VALS_EDGES, int SZ> struct HLD {
 	int N, tim = 0;
 	vector<vi> adj;
 	vi par, siz, rt, pos;
-	Node *tree;
-	HLD(vector<vi> adj_)
-		: N(sz(adj_)), adj(adj_), par(N, -1), siz(N, 1),
-		  rt(N),pos(N),tree(new Node(0, N)){ dfsSz(0); dfsHld(0); }
+	LazySeg<T, U, SZ> tree;
+	T ID; U ID2; T (*cmb)(T, T); void (*push)(int,int,int,T*,U*);
+	HLD(vector<vi> adj_, T id, U id2, T _cmb(T, T), void _push(int,int,int,vector<T>&,vector<U>&))
+		: N(sz(adj_)), adj(adj_), par(N, -1), siz(N, 1),rt(N),
+		pos(N),ID(id),cmb(_cmb),tree(id,id2,_cmb,_push){ dfsSz(0); dfsHld(0); }
 	void dfsSz(int v) {
 		for (int& u : adj[v]) {
 			adj[u].erase(find(all(adj[u]), v));
@@ -45,21 +46,19 @@ template <bool VALS_EDGES> struct HLD {
 		for (;; v = par[rt[v]]) {
 			if (pos[u] > pos[v]) swap(u, v);
 			if (rt[u] == rt[v]) break;
-			op(pos[rt[v]], pos[v] + 1);
+			op(pos[rt[v]], pos[v]);
 		}
-		op(pos[u] + VALS_EDGES, pos[v] + 1);
+		op(pos[u] + VALS_EDGES, pos[v]);
 	}
 	void modifyPath(int u, int v, int val) {
-		process(u, v, [&](int l, int r) { tree->add(l, r, val); });
+		process(u, v, [&](int l, int r) { tree.upd(l, r, val); });
 	}
-	int queryPath(int u, int v) { // Modify depending on problem
-		int res = -1e9;
-		process(u, v, [&](int l, int r) {
-				res = max(res, tree->query(l, r));
-		});
+	T queryPath(int u, int v) { // Modify depending on problem
+		T res = ID;
+		process(u, v, [&](int l, int r) {res = cmb(res, tree.query(l, r));});
 		return res;
 	}
-	int querySubtree(int v) { // modifySubtree is similar
-		return tree->query(pos[v] + VALS_EDGES, pos[v] + siz[v]);
+	T querySubtree(int v) { // modifySubtree is similar
+		return tree.query(pos[v] + VALS_EDGES, pos[v] + siz[v] - 1);
 	}
 };
