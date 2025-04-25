@@ -18,7 +18,7 @@ template<class T, class U, int SZ> struct LazySeg {
 	vector<T> seg; vector<U> lazy;
 	T (*cmb)(T a, T b);
 	void (*push)(int,int,int,vector<T>&,vector<U>&) = 
-		[&](int ind,int L,int R,vector<T>&_seg,vector<U>&_lazy) {
+		[&](int ind,int L,int R,vector<T>&seg,vector<U>&lazy) {
 		/// modify values for current node
 		seg[ind] += (R-L+1)*lazy[ind]; // dependent on operation
 		if (L != R) {lazy[2*ind] += lazy[ind]; lazy[2*ind+1] += lazy[ind];}
