@@ -4,36 +4,48 @@
  * License: CC0
  * Source: https://codeforces.com/blog/entry/53170, https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Trees%20(10)/HLD%20(10.3).h
  * Description: Find centroid decomposition of a tree. Main function to be called is
- * solve(root, root). Process trees formed after decomposition at each step within 
+ * solve(root, root, [](ll v) {}). Process trees formed after decomposition at each step within 
  * process(node)
  * Time: O(N \log N)
  * Status: stress-tested against old HLD
  */
 #pragma once
 
-vector<vi> decomp;
-vector<vi> adj; vi siz;
-vector<bool> vis;
-void find_size(int v, int p) {
-	siz[v] = 1;
-	for(auto nx : adj[v]) if(nx != p && !vis[nx]) {
-		find_size(nx, v);
-		siz[v] += siz[nx];
+struct Centroid { // 0 based indexing.
+	vector<vi> centroid_tree, adj;
+	vi par_ct, siz;
+	vector<bool> vis;
+	Centroid(vector<vector<ll>> _adj) : adj(_adj) {
+		centroid_tree.assign(sz(_adj), {});
+		siz.assign(sz(_adj), 0);
+		vis.assign(sz(_adj), false);
+		par_ct.assign(sz(_adj), -1);
 	}
-}
-int centroid(int v, int p, int n) {
-	for(auto nx : adj[v]) if(nx != p && !vis[nx] && siz[nx] > n
-			/2) {
-		return centroid(nx, v, n);
+	void find_size(ll v, ll par) {
+		siz[v] = 1;
+		for(auto x : adj[v]) {
+			if(x == par || vis[x]) continue;
+			find_size(x, v);
+			siz[v] += siz[x];
+		}
 	}
-	return v;
-}
-void process(int v) {}
-int solve(int v, int p) {
-	find_size(v, p);
-	int c = centroid(v, p, siz[v]);
-	process(c);
-	vis[c] = true;
-	for(auto nx : adj[c]) if(!vis[nx]) decomp[c].push_back(solve(nx, c));
-	return c;
-}
+	ll find_centroid(ll v, ll par, ll n_nodes) {
+		for(auto x : adj[v]) {
+			if(x == par || vis[x]) continue;
+			if(siz[x] > n_nodes/2) return find_centroid(x, v, n_nodes); 
+		}
+		return v;
+	}
+	ll solve(ll v, ll prev, auto process) {
+		find_size(v, prev);
+		ll centroid = find_centroid(v, prev, siz[v]);
+		process(centroid);
+		vis[centroid] = true;
+		par_ct[centroid] = prev;
+		for(auto x : adj[centroid]) { 
+			if (vis[x]) continue;
+			centroid_tree[centroid].push_back(solve(x, centroid, process));
+		}
+		return centroid;
+	}
+};
