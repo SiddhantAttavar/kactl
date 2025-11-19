@@ -30,7 +30,7 @@ struct LCA {
 	int lca(int a, int b) {
 		if (a == b) return a;
 		tie(a, b) = minmax(time[a], time[b]);
-		return path[rmq.query(a, b)];
+		return path[rmq.query(a, b - 1)];
 	}
 	//dist(a,b){return depth[a] + depth[b] - 2*depth[lca(a,b)];}
 };

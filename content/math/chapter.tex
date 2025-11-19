@@ -4,13 +4,13 @@
 \chapter{Mathematics}
 
 \section{Equations}
-\[ax^2+bx+c=0 \Rightarrow x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+% \[ax^2+bx+c=0 \Rightarrow x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
 
-The extremum is given by $x = -b/2a$.
+% The extremum is given by $x = -b/2a$.
 
-\[\begin{aligned}ax+by=e\\cx+dy=f\end{aligned}
-\Rightarrow
-\begin{aligned}x=\dfrac{ed-bf}{ad-bc}\\y=\dfrac{af-ec}{ad-bc}\end{aligned}\]
+% \[\begin{aligned}ax+by=e\\cx+dy=f\end{aligned}
+% \Rightarrow
+% \begin{aligned}x=\dfrac{ed-bf}{ad-bc}\\y=\dfrac{af-ec}{ad-bc}\end{aligned}\]
 
 In general, given an equation $Ax = b$, the solution to a variable $x_i$ is given by
 \[x_i = \frac{\det A_i'}{\det A} \]
@@ -26,18 +26,18 @@ Non-distinct roots $r$ become polynomial factors, e.g. $a_n = (d_1n + d_2)r^n$.
 \sin(v+w)&{}=\sin v\cos w+\cos v\sin w\\
 \cos(v+w)&{}=\cos v\cos w-\sin v\sin w\\
 \end{align*}
-\begin{align*}
-\tan(v+w)&{}=\dfrac{\tan v+\tan w}{1-\tan v\tan w}\\
-\sin v+\sin w&{}=2\sin\dfrac{v+w}{2}\cos\dfrac{v-w}{2}\\
-\cos v+\cos w&{}=2\cos\dfrac{v+w}{2}\cos\dfrac{v-w}{2}
-\end{align*}
-\[ (V+W)\tan(v-w)/2{}=(V-W)\tan(v+w)/2 \]
-where $V, W$ are lengths of sides opposite angles $v, w$.
-\begin{align*}
-	a\cos x+b\sin x&=r\cos(x-\phi)\\
-	a\sin x+b\cos x&=r\sin(x+\phi)
-\end{align*}
-where $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
+% \begin{align*}
+% \tan(v+w)&{}=\dfrac{\tan v+\tan w}{1-\tan v\tan w}\\
+% \sin v+\sin w&{}=2\sin\dfrac{v+w}{2}\cos\dfrac{v-w}{2}\\
+% \cos v+\cos w&{}=2\cos\dfrac{v+w}{2}\cos\dfrac{v-w}{2}
+% \end{align*}
+% \[ (V+W)\tan(v-w)/2{}=(V-W)\tan(v+w)/2 \]
+% where $V, W$ are lengths of sides opposite angles $v, w$.
+% \begin{align*}
+% 	a\cos x+b\sin x&=r\cos(x-\phi)\\
+% 	a\sin x+b\cos x&=r\sin(x+\phi)
+% \end{align*}
+% where $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
 
 \section{Geometry}
 
@@ -53,19 +53,19 @@ Law of sines: $\dfrac{\sin\alpha}{a}=\dfrac{\sin\beta}{b}=\dfrac{\sin\gamma}{c}=
 Law of cosines: $a^2=b^2+c^2-2bc\cos\alpha$\\
 Law of tangents: $\dfrac{a+b}{a-b}=\dfrac{\tan\dfrac{\alpha+\beta}{2}}{\tan\dfrac{\alpha-\beta}{2}}$\\
 
-\subsection{Quadrilaterals}
-With side lengths $a,b,c,d$, diagonals $e, f$, diagonals angle $\theta$, area $A$ and
-magic flux $F=b^2+d^2-a^2-c^2$:
-
-\[ 4A = 2ef \cdot \sin\theta = F\tan\theta = \sqrt{4e^2f^2-F^2} \]
-
- For cyclic quadrilaterals the sum of opposite angles is $180^\circ$,
-$ef = ac + bd$, and $A = \sqrt{(p-a)(p-b)(p-c)(p-d)}$.
+% \subsection{Quadrilaterals}
+% With side lengths $a,b,c,d$, diagonals $e, f$, diagonals angle $\theta$, area $A$ and
+% magic flux $F=b^2+d^2-a^2-c^2$:
+%
+% \[ 4A = 2ef \cdot \sin\theta = F\tan\theta = \sqrt{4e^2f^2-F^2} \]
+%
+%  For cyclic quadrilaterals the sum of opposite angles is $180^\circ$,
+% $ef = ac + bd$, and $A = \sqrt{(p-a)(p-b)(p-c)(p-d)}$.
 
 \subsection{Spherical coordinates}
-\begin{center}
-\includegraphics[width=25mm]{content/math/sphericalCoordinates}
-\end{center}
+% \begin{center}
+% \includegraphics[width=25mm]{content/math/sphericalCoordinates}
+% \end{center}
 \[\begin{array}{cc}
 x = r\sin\theta\cos\phi & r = \sqrt{x^2+y^2+z^2}\\
 y = r\sin\theta\sin\phi & \theta = \textrm{acos}(z/\sqrt{x^2+y^2+z^2})\\
@@ -73,12 +73,12 @@ z = r\cos\theta & \phi = \textrm{atan2}(y,x)
 \end{array}\]
 
 \section{Derivatives/Integrals}
-\begin{align*}
-	\dfrac{d}{dx}\arcsin x = \dfrac{1}{\sqrt{1-x^2}} &&& \dfrac{d}{dx}\arccos x = -\dfrac{1}{\sqrt{1-x^2}} \\
-	\dfrac{d}{dx}\tan x = 1+\tan^2 x &&& \dfrac{d}{dx}\arctan x = \dfrac{1}{1+x^2} \\
-	\int\tan ax = -\dfrac{\ln|\cos ax|}{a} &&& \int x\sin ax = \dfrac{\sin ax-ax \cos ax}{a^2} \\
-	\int e^{-x^2} = \frac{\sqrt \pi}{2} \text{erf}(x) &&& \int xe^{ax}dx = \frac{e^{ax}}{a^2}(ax-1)
-\end{align*}
+% \begin{align*}
+% 	\dfrac{d}{dx}\arcsin x = \dfrac{1}{\sqrt{1-x^2}} &&& \dfrac{d}{dx}\arccos x = -\dfrac{1}{\sqrt{1-x^2}} \\
+% 	\dfrac{d}{dx}\tan x = 1+\tan^2 x &&& \dfrac{d}{dx}\arctan x = \dfrac{1}{1+x^2} \\
+% 	\int\tan ax = -\dfrac{\ln|\cos ax|}{a} &&& \int x\sin ax = \dfrac{\sin ax-ax \cos ax}{a^2} \\
+% 	\int e^{-x^2} = \frac{\sqrt \pi}{2} \text{erf}(x) &&& \int xe^{ax}dx = \frac{e^{ax}}{a^2}(ax-1)
+% \end{align*}
 
 Integration by parts:
 \[\int_a^bf(x)g(x)dx = [F(x)g(x)]_a^b-\int_a^bF(x)g'(x)dx\]
@@ -94,10 +94,10 @@ Integration by parts:
 
 \section{Series}
 $$e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots,\,(-\infty<x<\infty)$$
-$$\ln(1+x) = x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\dots,\,(-1<x\leq1)$$
-$$\sqrt{1+x} = 1+\frac{x}{2}-\frac{x^2}{8}+\frac{2x^3}{32}-\frac{5x^4}{128}+\dots,\,(-1\leq x\leq1)$$
-$$\sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\dots,\,(-\infty<x<\infty)$$
-$$\cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots,\,(-\infty<x<\infty)$$
+% $$\ln(1+x) = x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\dots,\,(-1<x\leq1)$$
+% $$\sqrt{1+x} = 1+\frac{x}{2}-\frac{x^2}{8}+\frac{2x^3}{32}-\frac{5x^4}{128}+\dots,\,(-1\leq x\leq1)$$
+% $$\sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\dots,\,(-\infty<x<\infty)$$
+% $$\cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots,\,(-\infty<x<\infty)$$
 
 \section{Probability theory}
 Let $X$ be a discrete random variable with probability $p_X(x)$ of assuming the value $x$. It will then have an expected value (mean) $\mu=\mathbb{E}(X)=\sum_xxp_X(x)$ and variance $\sigma^2=V(X)=\mathbb{E}(X^2)-(\mathbb{E}(X))^2=\sum_x(x-\mathbb{E}(X))^2p_X(x)$ where $\sigma$ is the standard deviation. If $X$ is instead continuous it will have a probability density function $f_X(x)$ and the sums above will instead be integrals with $p_X(x)$ replaced by $f_X(x)$.
@@ -105,6 +105,25 @@ Let $X$ be a discrete random variable with probability $p_X(x)$ of assuming the 
 Expectation is linear:
 \[\mathbb{E}(aX+bY) = a\mathbb{E}(X)+b\mathbb{E}(Y)\]
 For independent $X$ and $Y$, \[V(aX+bY) = a^2V(X)+b^2V(Y).\]
+
+\subsection{Binomial Coefficients}
+$$ \binom n k = \frac {n!} {k!(n-k)!} $$
+*    Symmetry rule:
+    \[ \binom n k = \binom n {n-k} \]
+*   Factoring in:
+    \[ \binom n k = \frac n k \binom {n-1} {k-1} \]
+*   Sum over $k$:
+    \[ \sum_{k = 0}^n \binom n k = 2 ^ n \]
+*   Sum over $n$:
+    \[ \sum_{m = 0}^n \binom m k = \binom {n + 1} {k + 1} \]
+*   Sum over $n$ and $k$:
+    \[ \sum_{k = 0}^m  \binom {n + k} k = \binom {n + m + 1} m \]
+*   Sum of the squares:
+    \[ {\binom n 0}^2 + {\binom n 1}^2 + \cdots + {\binom n n}^2 = \binom {2n} n \]
+*   Weighted sum:
+    \[ 1 \binom n 1 + 2 \binom n 2 + \cdots + n \binom n n = n 2^{n-1} \]
+*   Connection with the Fibonacci numbers:
+    \[ \binom n 0 + \binom {n-1} 1 + \cdots + \binom {n-k} k + \cdots + \binom 0 n = F_{n+1} \]
 
 \subsection{Discrete distributions}
 

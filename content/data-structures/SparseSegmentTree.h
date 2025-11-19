@@ -3,41 +3,41 @@
  * Date: 2015-02-24
  * License: CC0
  * Source: Wikipedia, tinyKACTL
- * Description: Sparse/Persistent Segment Tree. Use with BumpAllocator if there’s
- * MLE/TLE issues
+ * Description: Sparse/Persistent Segment Tree. Possible MLE/TLE issues. 
+ * Provide approx q = num of queries + updates to improve time per operation
  * Time: $O(\log N)$
  * Status: Tested on Kattis and SPOJ, and stress-tested
  */
 #pragma once
 
-struct Node {
-	int x;
-	Node *l, *r;
-	Node(int _x) : x(_x), l(nullptr), r(nullptr) {}
-	Node(Node* _l, Node* _r) : l(_l), r(_r) {
-		x = 0;
-		if(l) x += l->x;
-		if(r) x += r->x;
+template<typename T, int SZ> struct SparseSegmentTree {
+	vector<pair<int, int>> tree;
+	vector<T> seg; T id; int n;
+	T (*cmb) (T, T);
+	SparseSegmentTree(T _id, T _cmb(T, T), int q = 0):id(_id),
+		cmb(_cmb),n(1),tree({{-1, -1}}),seg({{id}}) {
+		int k = 2 * q * __lg(SZ);
+		tree.reserve(k); seg.reserve(k);
 	}
-	Node(Node *v) : x(v->x), l(v->l), r(v->r) {}
+	void add(int c, int l, int r) {
+		if (tree[c].first != -1 or l == r) return;
+		tree[c] = {n, n + 1}; n += 2;
+		tree.push_back({-1, -1}); tree.push_back({-1, -1});
+		seg.push_back(id); seg.push_back(id);
+	}
+	T query(int l, int r, int s=0, int e=SZ-1, int c=0) {
+		if (l > e || r < s) return id;
+		if (l <= s && r >= e) return seg[c];
+		int mid = (s + e) / 2; add(c, s, e);
+		return cmb(query(l,r, s, mid, tree[c].first),
+			query(l, r, mid + 1, e, tree[c].second));
+	}
+	void upd(int i, T x, int s=0, int e=SZ-1, int c=0) {
+		if (s > i || e < i) return;
+		if (s == e) {seg[c] = x; return;}
+		int mid = (s + e) / 2; add(c, s, e);
+		upd(i, x, s, mid, tree[c].first);
+		upd(i, x, mid + 1, e, tree[c].second);
+		seg[c] = cmb(seg[tree[c].first], seg[tree[c].second]);
+	}
 };
-Node* root[N];
-Node* build(int l, int r) {
-	if(l == r) return new Node(arr[l]);
-	int m = (l + r)/2;
-	return new Node(build(l, m), build(m + 1, r));
-}
-Node* update(Node* node, int l, int r, int pos, int val) {
-	if(l == r) return new Node(val);
-	int m = (l + r)/2;
-	if(pos <= m) return new Node(update(node->l, l, m, pos, val),
-			node->r);
-	return new Node(node->l, update(node->r, m + 1, r, pos, val))
-		;
-}
-int query(Node* node, int l, int r, int ql, int qr) {
-	if(qr < l || ql > r) return 0;
-	if(ql <= l && qr >= r) return node->x;
-	int m = (l + r)/2;
-	return query(node->l, l, m, ql, qr) + query(node->r, m + 1, r, ql, qr);
-}

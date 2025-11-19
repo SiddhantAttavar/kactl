@@ -14,9 +14,8 @@
 
 template<class T, class U, int SZ> struct LazySeg { 
 	// static_assert(pct(SZ) == 1); // SZ must be power of 2
-	const T ID1;
+	const T ID1; T (*cmb)(T a, T b);
 	vector<T> seg; vector<U> lazy;
-	T (*cmb)(T a, T b);
 	void (*push)(int,int,int,vector<T>&,vector<U>&) = 
 		[&](int ind,int L,int R,vector<T>&seg,vector<U>&lazy) {
 		/// modify values for current node

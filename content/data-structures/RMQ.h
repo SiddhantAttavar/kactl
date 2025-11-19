@@ -7,7 +7,7 @@
  * min(V[a], V[a + 1], ... V[b - 1]) in constant time.
  * Usage:
  *  RMQ rmq(values);
- *  rmq.query(inclusive, exclusive);
+ *  rmq.query(inclusive, inclusive);
  * Time: $O(|V| \log |V| + Q)$
  * Status: stress-tested
  */
@@ -23,7 +23,7 @@ struct RMQ {
 				jmp[k][j] = min(jmp[k - 1][j], jmp[k - 1][j + pw]);
 		}
 	}
-	T query(int a, int b) {
+	T query(int a, int b) { b++; // (for right inclusive)
 		assert(a < b); // or return inf if a == b
 		int dep = 31 - __builtin_clz(b - a);
 		return min(jmp[dep][a], jmp[dep][b - (1 << dep)]);
