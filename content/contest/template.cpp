@@ -11,7 +11,7 @@ typedef pair<int, int> pii;
 typedef vector<int> vi;
 
 void solve() {
-
+	
 }
 
 signed main() {
