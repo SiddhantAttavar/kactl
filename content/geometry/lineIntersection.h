@@ -11,7 +11,6 @@ The wrong position will be returned if P is Point<ll> and the intersection point
 Products of three coordinates are used in intermediate steps so watch out for overflow if using int or ll.
 \end{minipage}
 \begin{minipage}{15mm}
-\includegraphics[width=\textwidth]{content/geometry/lineIntersection}
 \end{minipage}
  * Usage:
  * 	auto res = lineInter(s1,e1,s2,e2);
