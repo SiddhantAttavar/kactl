@@ -3,13 +3,7 @@
  * Date: 2009-03-21
  * License: CC0
  * Source:
- * Description:\\
-\begin{minipage}{75mm}
-Returns the shortest distance between point p and the line segment from point s to e.
-\end{minipage}
-\begin{minipage}{15mm}
-\vspace{-10mm}
-\end{minipage}
+ * Description:Returns the shortest distance between point p and the line segment from point s to e.
  * Usage: 
  * 	Point<double> a, b(2,2), p(1,1);
  * 	bool onSegment = segDist(a,b,p) < 1e-10;

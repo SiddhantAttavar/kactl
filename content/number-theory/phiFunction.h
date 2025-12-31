@@ -8,11 +8,11 @@
  * If $n=p_1^{k_1}p_2^{k_2} ... p_r^{k_r}$ then $\phi(n) = (p_1-1)p_1^{k_1-1}...(p_r-1)p_r^{k_r-1}$.
  * $\phi(n)=n \cdot \prod_{p|n}(1-1/p)$.
  *
- * $\sum_{d|n} \phi(d) = n$, $\sum_{1\leq k \leq n, \gcd(k,n)=1} k = n \phi(n)/2, n>1$
+ * $\sum_{d|n} \phi(d) = n$, $\sum_{k=1, \gcd(k,n)=1}^n k = n \phi(n)/2, n>1$
  *
- * \textbf{Euler's thm}: $a,n$ coprime $\Rightarrow a^{\phi(n)} \equiv 1 \pmod{n}$.
+ * \textbf{Euler's}: $a,n$ coprime $\Rightarrow a^{\phi(n)} \equiv 1 \pmod{n}$.
  *
- * \textbf{Fermat's little thm}: $p$ prime $\Rightarrow a^{p-1} \equiv 1 \pmod{p}$ $\forall a$.
+ * \textbf{Fermat's little}: $p$ prime $\Rightarrow a^{p-1} \equiv 1 \pmod{p}$ $\forall a$.
  * Status: Tested
  */
 #pragma once
