@@ -1,7 +1,66 @@
-\chapter{Contest}
+\chapter{Template}
 
 \kactlimport[-l rawcpp]{template.cpp}
-\kactlimport[-l sh]{.bashrc}
-% \kactlimport[-l raw]{.vimrc}
-\kactlimport[-l raw]{hash.sh}
-\kactlimport[-l raw]{troubleshoot.txt}
+
+\kactlimport{OrderStatisticTree.h}
+\kactlimport{SegmentTree.h}
+\kactlimport{LazySegmentTree.h}
+\kactlimport{UnionFindRollback.h}
+\kactlimport{RMQ.h}
+\kactlimport{LineContainer.h}
+
+\kactlimport{ModMulLL.h}
+\kactlimport{MillerRabin.h}
+\kactlimport{Factor.h}
+\kactlimport{euclid.h}
+\kactlimport{CRT.h}
+\kactlimport{phiFunction.h}
+\section{Mobius Function}
+\[
+	\mu(n) = \begin{cases} 0 & n \textrm{ is not square free}\\ 1 & n \textrm{ has even number of prime factors}\\ -1 & n \textrm{ has odd number of prime factors}\\\end{cases}
+\]
+  Mobius Inversion:
+  \[ g(n) = \sum_{d|n} f(d) \Leftrightarrow f(n) = \sum_{d|n} \mu(d)g(n/d) \]
+  Other useful formulas/forms:
+
+  $ \sum_{d | n} \mu(d) = [ n = 1] $ (very useful)
+
+  $ g(n) = \sum_{n|d} f(d) \Leftrightarrow f(n) = \sum_{n|d} \mu(d/n)g(d)$
+
+ $ g(n) = \sum_{1 \leq m \leq n} f(\left\lfloor\frac{n}{m}\right \rfloor ) \Leftrightarrow f(n) = \sum_{1\leq m\leq n} \mu(m)g(\left\lfloor\frac{n}{m}\right\rfloor)$
+
+\kactlimport{MinCostMaxFlow.h}
+\kactlimport{Dinic.h}
+\kactlimport{DFSMatching.h}
+\kactlimport{SCC.h}
+\kactlimport{LCA.h}
+\kactlimport{Centroid.h}
+
+\kactlimport{KMP.h}
+\kactlimport{Zfunc.h}
+\kactlimport{Manacher.h}
+\kactlimport{SuffixArray.h}
+
+\kactlimport{Point.h}
+\kactlimport{lineDistance.h}
+\kactlimport{SegmentDistance.h}
+\kactlimport{SegmentIntersection.h}
+\kactlimport{sideOf.h}
+\kactlimport{OnSegment.h}
+\kactlimport{ConvexHull.h}
+\kactlimport{InsidePolygon.h}
+\kactlimport{PolygonArea.h}
+\kactlimport{PointInsideHull.h}
+
+\kactlimport{FastFourierTransform.h}
+\kactlimport{FastFourierTransformMod.h}
+\kactlimport{NumberTheoreticTransform.h}
+
+\subsection{Bit hacks}
+	\begin{itemize}
+		\item \verb@x & -x@ is the least bit in \texttt{x}.
+		\item \verb@for (int x = m; x; ) { --x &= m; ... }@ loops over all subset masks of \texttt{m} (except \texttt{m} itself).
+		\item \verb@c = x&-x, r = x+c; (((r^x) >> 2)/c) | r@ is the next number after \texttt{x} with the same number of bits set.
+		\item \verb@rep(b,0,K) rep(i,0,(1 << K))@ \\ \verb@  if (i & 1 << b) D[i] += D[i^(1 << b)];@ computes all sums of subsets.
+		\item \verb@for (int i = b._Find_first(); i < b.size(); @\\ \verb@ i = b._Find_next(i))@ can be used to iterate through the set bits of a bitset.
+	\end{itemize}
