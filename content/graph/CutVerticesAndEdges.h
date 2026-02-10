@@ -16,22 +16,25 @@ int timer;
 void dfs(int v, int p = -1) {
 	visited[v] = true;
 	tin[v] = low[v] = timer++;
-	int children=0; // CUT VERTICE
-		for (int to : adj[v]) {
-			if (to == p) continue;
-			if (visited[to]) {
-				low[v] = min(low[v], tin[to]);
-			} else {
-				dfs(to, v);
-				low[v] = min(low[v], low[to]);
-				if (low[to] > tin[v]) // CUT EDGE
-					IS_BRIDGE(v, to);
-			}
+	int children=0;
+	for (int to : adj[v]) {
+		if (to == p) continue;
+		if (visited[to]) {
+			low[v] = min(low[v], tin[to]);
+		} else {
+			dfs(to, v);
+			low[v] = min(low[v], low[to]);
+			if (low[to] > tin[v]) // CUT EDGE
+				IS_BRIDGE(v, to);
+			if (low[to] >= tin[v] and p != -1)
+				IS_CUTPOINT(v);
+			++children;
 		}
-	if(p == -1 && children > 1) // CUT VERTICE
+	}
+	if(p == -1 && children > 1)
 		IS_CUTPOINT(v);
 }
-void find_cutpoints() { // CUT VERTICE
+void find_cutpoints_and_bridges() {
 	timer = 0;
 	visited.assign(n, false);
 	tin.assign(n, -1);
@@ -39,15 +42,5 @@ void find_cutpoints() { // CUT VERTICE
 	for (int i = 0; i < n; ++i) {
 		if (!visited[i])
 			dfs (i);
-	}
-}
-void find_bridges() { // CUT EDGE
-	timer = 0;
-	visited.assign(n, false);
-	tin.assign(n, -1);
-	low.assign(n, -1);
-	for (int i = 0; i < n; ++i) {
-		if (!visited[i])
-			dfs(i);
 	}
 }

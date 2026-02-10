@@ -15,7 +15,7 @@ struct Centroid { // 0 based indexing.
 	vector<vi> centroid_tree, adj;
 	vi par_ct, siz;
 	vector<bool> vis;
-	Centroid(vector<vector<ll>> _adj) : adj(_adj), cent_tree(sz(_adj)),
+	Centroid(vector<vector<ll>> _adj) : adj(_adj), centroid_tree(sz(_adj)),
 		siz(sz(_adj)), vis(sz(_adj)), par_ct(sz(_adj), -1) {}
 	void find_size(ll v, ll par) {
 		siz[v] = 1;
